@@ -1,4 +1,4 @@
-package swiftcov
+package gcov
 
 import (
 	"testing"
