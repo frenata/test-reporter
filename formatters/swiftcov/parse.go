@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 	"strconv"
 	"strings"
 
@@ -36,7 +37,7 @@ func (f *Formatter) Search(paths ...string) (string, error) {
 		}
 		for _, file := range files {
 			if !file.IsDir() && strings.HasSuffix(file.Name(), search) {
-				f.FileNames = append(f.FileNames, file.Name())
+				f.FileNames = append(f.FileNames, filepath.Join(p, file.Name()))
 			}
 		}
 	}
@@ -49,7 +50,6 @@ func (f *Formatter) Search(paths ...string) (string, error) {
 					strings.Join(paths, ", ")))
 	}
 
-	fmt.Println(f.FileNames)
 	return fmt.Sprint(f.FileNames), nil
 }
 
