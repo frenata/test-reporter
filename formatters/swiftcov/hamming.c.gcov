@@ -1,0 +1,26 @@
+        -:    0:Source:hamming.c
+        -:    0:Graph:hamming.gcno
+        -:    0:Data:hamming.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include <stdio.h>
+        -:    2:#include <string.h>
+        -:    3:
+        1:    4:int compute(char* alpha, char* beta) {
+        1:    5:	int distance = 0;
+        1:    6:	int len = strlen(alpha)<strlen(beta) ? strlen(alpha) : strlen(beta);
+        -:    7:
+        1:    8:	for(int i=0; i<len; i++) {
+    #####:    9:		if(alpha[i] != beta[i]) {
+    #####:   10:			distance++;
+        -:   11:		}
+        -:   12:	}
+        -:   13:
+        1:   14:	return distance;
+        -:   15:}
+        -:   16:
+        1:   17:int main() {
+        1:   18:	if(compute("", "AAGC") != 0) {
+    #####:   19:		printf("Test failed");
+        -:   20:	}
+        -:   21:}

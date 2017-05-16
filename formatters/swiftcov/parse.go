@@ -22,7 +22,7 @@ type Formatter struct {
 }
 
 var searchPaths = []string{"./"}
-var search = ".swift.gcov" // look for these file extensions
+var search = ".gcov" // look for these file extensions
 
 // Search searches the designated paths for SwiftCov files,
 // appending them to the list of filenames.
@@ -49,6 +49,7 @@ func (f *Formatter) Search(paths ...string) (string, error) {
 					strings.Join(paths, ", ")))
 	}
 
+	fmt.Println(f.FileNames)
 	return fmt.Sprint(f.FileNames), nil
 }
 
@@ -69,11 +70,13 @@ func parseSourceFile(fileName string) (*formatters.SourceFile, error) {
 	gitHead, _ := env.GetHead()
 	sf, err := formatters.NewSourceFile(fileName, gitHead)
 	if err != nil {
+		fmt.Println("no file " + fileName + "! NewSourceFile")
 		return nil, errors.WithStack(err)
 	}
 
 	file, err := os.Open(fileName)
 	if err != nil {
+		fmt.Println("no file! os.Open")
 		return nil, errors.WithStack(err)
 	}
 	defer file.Close()
